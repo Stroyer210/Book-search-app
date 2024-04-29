@@ -9,11 +9,20 @@ const typeDefs = `
 
 type Book {
     bookId: ID!
-    authors: [String]!
-    description: String!
+    authors: [String]
+    description: String
     title: String!
-    image: String!
-    link: String!
+    image: String
+    link: String
+}
+
+input BookInput {
+  bookId: String!
+  authors: [String]
+  title: String!
+  description: String!
+  image: String
+  link: String
 }
 
 type Auth {
@@ -21,17 +30,15 @@ type Auth {
     user: User
 }
 
-  type Query {
-    users: [User]!
-    user(userId: ID!): User
-    me: User
-  }
+type Query {
+  me: User
+}
 
-  type Mutation {
+type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    saveBook: (userId: ID!): User
-    removeBook: (UserId: ID! book: String!): User 
+    saveBook(bookData: BookInput!): User
+    removeBook(bookId: ID!): User
   }
 `;
 
